@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from './Components/login'; // Import your Login component
+import Dashboard from './Components/Dashboard'; // Import your Dashboard component
+import QuizCreator from './Components/make_a_quiz';
+import QuizAttempter from './Components/submit_a_quiz'; // Import your QuizAttempter component
+import Home from "./Components/homepage";
+import AIorManual from './Components/ai_or_manual';
+import GenerateAssessment from './Components/generateAssessment';
+import GenerateContent from "./Components/GenerateContent.jsx";
+import TestAI from "./Components/TestAI.jsx";
 
-function App() {
+import SendMail from "./Components/SenMail.jsx";
+const AppRouter = () => {
+  const [link,setlink]=useState('');
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path='/ai_or_manual' element={<AIorManual/>}/>
+        <Route path="/" element={<Home/>} />
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/quizCreator" element={<QuizCreator link={link} setlink={setlink}/>}/>
+        <Route path="/quiz/:link" element={<QuizAttempter />} />
+        <Route path='/generateAssessment' element={<GenerateAssessment/>}/>
+        <Route path="/sendemail" element={<SendMail />}></Route>
+      <Route path="/testai" element={<TestAI />}></Route>
+      <Route path="/generateContent" element={<GenerateContent />}></Route>
+      </Routes>
+    </Router>
   );
-}
+};
 
-export default App;
+export default AppRouter;

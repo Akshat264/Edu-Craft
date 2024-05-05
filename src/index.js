@@ -1,17 +1,43 @@
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+// import Login from "./Components/login";
+// import Dashboard from "./Components/Dashboard";
+// import App from "./App";
+// import { createBrowserRouter, RouterProvider } from "react-router-dom";
+// import QuizCreator from "./Components/make_a_quiz";
+// import QuizSubmitter from "./Components/submit_a_quiz";
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+
+// const router = createBrowserRouter([
+//   {
+//     path: "/",
+//     element: <App />,
+//   },
+//   {
+// path: "/login",
+//   element: <Login/>
+// },{
+//     path: "/dashboard",
+//     element: <Dashboard/>
+// },{
+//     path: "/createQuiz",
+//     element: <QuizCreator link={link} setlink={setlink}/>
+// },{
+//   path:  `/quiz/:link`,
+//   element: <QuizSubmitter/>
+// }
+// ]);
+// root.render(<RouterProvider router={router} />);
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import ReactDOM from 'react-dom';
+import AppRouter from './App'; // Adjust the path as needed
+import { AuthProvider } from './authProvider';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+ReactDOM.render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <AuthProvider>
+    <AppRouter />
+    </AuthProvider>
+  </React.StrictMode>,
+  document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
